@@ -1,20 +1,45 @@
-# Blog API
+# Simple API
+
+Endpoints:
+| Action | Endpoint | Route |
+-----------------------------
+List       GET /quotes         /api/:version/quotes(.json)
+Read       GET /quotes/:id     /api/:version/quotes/:id(.json)
+Update     PUT /quotes/:id     /api/:version/quotes/:id(.json)
+Delete     DELETE /quotes/:id  /api/:version/quotes/:id(.json)
+Create     POST /quotes        /api/:version/quotes(.json)
+Favorite   PATCH /quotes/:id   /api/:version/quotes/:id(.json)
+
+
+
+```
+curl -X GET 'http://localhost:3001/api/v1/quotes.json' # list
+curl -X GET 'http://localhost:3001/api/v1/quotes/1.json' # show
+curl -X POST 'http://localhost:3001/api/v1/quotes.json' -d "quote='my cool quote'" # create
+curl -X PUT 'http://localhost:3001/api/v1/quotes/1/update.json' -d 'quote_id=4' # favorite
+```
+
+Get routes:
+`be rake grape:routes`
+
+
+# Original README
 
 This is a example application showing how to use [grape](https://github.com/intridea/grape) to create a simple API. This sample
-show cases how to create a simple API without authentication, caching, custom errors, 
+show cases how to create a simple API without authentication, caching, custom errors,
 entities and such other things to build a robust public API.
 
 I wrote the sample because I was unable to find a sample to cover the basics of grape.
 
 ## Environment
 
-The sample was developed using the following software. If your software is different, the 
-sample may still work, but there is no guarantee. 
+The sample was developed using the following software. If your software is different, the
+sample may still work, but there is no guarantee.
 
 1. Rails 3.2.8
 2. ruby 1.9.3p194
 3. OS X 10.8.1 (aka Mountain Lion)
-4. Grape (0.2.1) 
+4. Grape (0.2.1)
 
 ## Setup
 
@@ -52,13 +77,13 @@ Getting all the weblogs
 curl -i http://localhost:3000/weblogs
 ```
 
-Creating a weblog 
+Creating a weblog
 
 ```bash
 curl -d '{"title": "Dummy"}'  -X POST -H Content-Type:application/json http://localhost:3000/weblogs
-```  
+```
 
-Deleting a weblog 
+Deleting a weblog
 
 ```bash
 curl -X DELETE http://localhost:3000/weblogs/1
@@ -81,31 +106,31 @@ Create a post in a weblog #2
 ```bash
 curl -d '{"title": "Dummy"}'  -X POST -H Content-Type:application/json http://localhost:3000/weblogs/2/posts
 ```
-  
+
 Delete all posts in weblog #2
 
 ```bash
 curl -X DELETE http://localhost:3000/weblogs/2/posts
-```  
+```
 
 Updating a post
 
 ```bash
 curl -d '{"title": "Dummy"}'  -X PUT -H Content-Type:application/json http://localhost:3000/posts/2
 ```
- 
+
 Delete all posts
 
 ```bash
 curl -X DELETE http://localhost:3000/posts
 ```
-  
+
 Delete a specific post
 
 ```bash
 curl -X DELETE http://localhost:3000/posts/2
 ```
- 
+
 Delete all comments from post #2
 
 ```bash
@@ -114,7 +139,7 @@ curl -X DELETE http://localhost:3000/posts/2/comments
 
 Create a comment in a post #2
 
-```bash  
+```bash
 curl -d '{"name": "Bob"}'  -X POST -H Content-Type:application/json http://localhost:3000/posts/2/comments
 ```
 
@@ -122,19 +147,19 @@ Get a comment #2
 
 ```bash
 curl http://localhost:3000/comments/2
-```  
+```
 
 Delete a comment #2
 
 ```bash
 curl -X DELETE http://localhost:3000/comments/2
 ```
-  
+
 Delete all comments
 
 ```bash
 curl -X DELETE http://localhost:3000/comments
-```  
+```
 
 Updating comment #2
 

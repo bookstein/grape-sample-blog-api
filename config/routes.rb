@@ -1,7 +1,6 @@
 require 'grape'
 
-Blog::Application.routes.draw do
-  
-  mount Blog::API => "/"
-
+Simple::Application.routes.draw do
+  #mount Blog::API => "/blog"
+  mount API::Root => "/"
 end
